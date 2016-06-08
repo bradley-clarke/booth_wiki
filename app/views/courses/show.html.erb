@@ -33,14 +33,7 @@
             <!-- Hidden input for authenticity token to protect from forgery -->
             <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-            <!-- Label and input for review -->
-            <div class="form-group">
-              <label for="review" class="control-label">
-                Review
-              </label>
 
-              <textarea id="review" name="review" placeholder="Review" class="form-control" rows="3"><%= @review.review %></textarea>
-            </div>
 
             <!-- Label and input for quarter_taken -->
             <div class="form-group">
@@ -103,6 +96,18 @@
                 <a href="/professors/new">Or, add a new professor</a>
               </p>
             </div>
+
+            <!-- Label and input for review -->
+            <div class="form-group">
+              <label for="review" class="control-label">
+                Review
+              </label>
+
+              <textarea id="review" name="review" placeholder="Review" class="form-control" rows="3"><%= @review.review %></textarea>
+            </div>
+
+
+
             <button class="btn btn-success">
               Create Review
             </button>
@@ -121,7 +126,7 @@
             Back to Course Index
           </a>
 
-        
+
 
 
 
