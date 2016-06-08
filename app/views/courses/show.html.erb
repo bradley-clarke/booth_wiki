@@ -1,0 +1,135 @@
+<div class="page-header">
+  <h3>Course Name: <%= @course.title %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      <dt>Title</dt>
+      <dd><%= @course.title %></dd>
+
+      <dt>Course Number</dt>
+      <dd><%= @course.course_number %></dd>
+
+      <dt>Number of reviews</dt>
+      <dd><%= @course.reviews.count %></dd>
+
+      <dt>Reviews</dt>
+      <dd>
+        <ul class="list-group">
+          <% @course.reviews.each do |review| %>
+          <li class="list-group-item">
+            <a href="/reviews/<%= review.id %>">
+              <%= review.review %> (<%= review.professor.first_name %>) (<%= review.user.email %>) (<%= review.quarter_taken %>)
+            </a>
+          </li>
+          <% end %>
+        </ul>
+      </dd>
+
+        <h5>Add a new review for this course</h5>
+        <li class="list-group-item">
+          <form action="/create_review" method="post">
+            <!-- Hidden input for authenticity token to protect from forgery -->
+            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+            <!-- Label and input for review -->
+            <div class="form-group">
+              <label for="review" class="control-label">
+                Review
+              </label>
+
+              <textarea id="review" name="review" placeholder="Review" class="form-control" rows="3"><%= @review.review %></textarea>
+            </div>
+
+            <!-- Label and input for quarter_taken -->
+            <div class="form-group">
+              <label for="quarter_taken" class="control-label">
+                Quarter taken
+              </label>
+
+              <select class="form-control" name="quarter_taken">
+                <option>Spring 2016</option>
+                <option>Winter 2016</option>
+                <option>Fall 2015</option>
+                <option>Summer 2015</option>
+                <option>Spring 2015</option>
+                <option>Winter 2015</option>
+                <option>Fall 2014</option>
+                <option>Summer 2014</option>
+                <option>Spring 2014</option>
+                <option>Winter 2014</option>
+                <option>Fall 2013</option>
+                <option>Summer 2013</option>
+                <option>Spring 2013</option>
+                <option>Winter 2013</option>
+                <option>Fall 2012</option>
+                <option>Summer 2012</option>
+                <option>Spring 2012</option>
+                <option>Winter 2012</option>
+                <option>Fall 2011</option>
+                <option>Summer 2011</option>
+              </select>
+
+            </div>
+
+            <!-- Label and input for user_id -->
+            <div class="form-group">
+
+              <input type="hidden" id="user_id" name="user_id" class="form-control" value="<%= current_user.id %>">
+            </div>
+
+
+
+            <!-- Label and input for course_id -->
+            <div class="form-group">
+
+              <input name="course_id" type="hidden" value="<%= @course.id %>">
+
+
+
+            </div>
+
+
+
+            <!-- Label and input for professor_id -->
+            <div class="form-group">
+              <label for="professor_id" class="control-label">
+                Professor
+              </label>
+
+              <%= select_tag(:professor_id,options_from_collection_for_select(Professor.order("first_name"), :id, :first_name, @review.professor_id), :class => "form-control") %>
+              <p>
+                <a href="/professors/new">Or, add a new professor</a>
+              </p>
+            </div>
+            <button class="btn btn-success">
+              Create Review
+            </button>
+            or
+            <a href="/courses">Cancel</a>
+          </form>
+        </li>
+
+
+          </dd>
+
+        </dl>
+
+        <div class="btn-group btn-group-justified">
+          <a href="/courses" class="btn btn-primary">
+            Back to Course Index
+          </a>
+
+        
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>

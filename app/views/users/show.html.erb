@@ -1,0 +1,35 @@
+<div class="page-header">
+  <h3>Profile page for <%= @user.email %></h3>
+</div>
+
+<div>
+  <td>User ID: <%= @user.id %></td>
+</div>
+
+<div>
+
+  <td>Username: <%= @user.email %></td>
+
+</div>
+
+<div>
+  <td>
+    Number of reviews: <%= @user.reviews.count %>
+  </td>
+
+</div>
+
+<table>
+  <p>
+    Reviews by <%= @user.email %>:
+  </p>
+
+  <ul class="list-group">
+    <% @user.reviews.each do |review| %>
+    <li class="list-group-item">
+      <a href="/reviews/<%= review.id %>">
+      <%= review.review %> (<%= review.course.title %>) (<%= review.quarter_taken %>)
+      </a>
+    </li>
+    <% end %>
+  </ul>

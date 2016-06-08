@@ -1,0 +1,48 @@
+<div class="page-header">
+  <h3>Review #<%= @review.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      <dt>Review</dt>
+      <dd><%= @review.review %></dd>
+
+      <dt>Quarter taken</dt>
+      <dd><%= @review.quarter_taken %></dd>
+
+      <dt>User</dt>
+      <dd><a href="/users/<%= @review.user_id %>">
+        <%= @review.user.email %>
+      </a>
+    </dd>
+
+    <dt>Course</dt>
+    <dd>  <a href="/courses/<%= @review.course_id %>">
+      <%= @review.course.title %>
+    </a>
+  </dd>
+
+  <dt>Professor</dt>
+  <dd>  <a href="/professors/<%= @review.professor_id %>">
+    <%= @review.professor.first_name %>
+  </a>
+</dd>
+</dl>
+
+<div class="btn-group btn-group-justified">
+  <a href="/reviews" class="btn btn-primary">
+    Back
+  </a>
+  <% if current_user.id == @review.user_id %>
+
+  <a href="/reviews/<%= @review.id %>/edit" class="btn btn-warning">
+    Edit
+  </a>
+  <a href="/delete_review/<%= @review.id %>" class="btn btn-danger" rel="nofollow">
+    Delete
+  </a>
+  <% end %>
+</div>
+</div>
+</div>

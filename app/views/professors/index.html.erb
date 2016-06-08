@@ -1,0 +1,34 @@
+<div class="page-header">
+  <h1>
+    Professors
+    <a href="/professors/new" class="btn btn-lg btn-success">New Professor</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Name</th>
+
+        <th># of Reviews</th>
+
+
+        <th>Actions</th>
+      </tr>
+
+      <% @professors.each do |professor| %>
+      <tr>
+        <td><%= professor.first_name %></td>
+
+        <td> <%= professor.reviews.count %>
+        </td>
+
+        <td>
+          <a href="/professors/<%= professor.id %>" class="btn btn-primary">Professor Profile</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
